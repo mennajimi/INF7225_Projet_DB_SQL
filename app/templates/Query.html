@@ -1,0 +1,85 @@
+{% extends "layout.html"%}
+{% block content %}
+{% if not query %}
+<head>
+    <meta charset="UTF-8">
+    <title>Choose a QUERY</title></head>
+<body>
+<h1>What do you want to know:</h1>
+    <form action="query" method="POST">
+        <input style="display: none;" name="queryset" value="False">
+        <select  name="querytype" required="True">
+            <option selected>Choose query</option>
+            <option value="A"> A)Select all the experiments for a given Patient</option>
+            <option value="B"> B)Select all conditions for a given sample</option>
+            <option value="C"> C)Select patient information for a specific experiment</option>
+            <option value="D"> D)Select patient information for a specific study</option>
+        </select>
+        <button class="btn btn-secondary" type="submit" value="submit">Submit query</button>
+    </form>
+</body>
+{% elif  query == "A" %}
+<body>
+<h2>A)Select all conditions for a given sample</h2>
+<form method="POST" action="results">
+    <h3>Query Parameters:</h3>
+        <input style="display: none;" name="queryset" value="True">
+        <input style="display: none;" name="querytype" value="A"/>
+        <label for="lims"> Select Lims Unique ID:</label>
+        <input type=”text” name="lims" id="lims" placeholder="ex:ABC0001P" width="50%">
+        <label for="panel">Panel:</label>
+        <select name="panel" id="panel" required="True">
+            <option value="LB">LB</option>
+            <option value="LT">LT</option>
+            <option value="Cancer">Cancer</option>
+            <option value="Myelo">Myelo</option>
+        </select>
+        <button class="btn btn-secondary" type="submit" value="submit">Submit query</button>
+    </form>
+</body>
+{% elif  query == "B"%}
+<body>
+    <h2>B)Select all the experiments for a given Patient</h2>
+    <form method="POST" action="results">
+        <h3>Query Parameters:</h3>
+        <input style="display: none;" name="queryset" value="True">
+        <input style="display: none;" name="querytype" value="B"/>
+        <label for="subjID"> Select SubjectID:</label>
+        <input type=”text” name="subjID" id="subjID" placeholder="ex:00000000" width="50%">
+        <label for="study"> Select Study:</label>
+        <input  type=”text” name="study" id="study" placeholder="ex:ABC" width="50%">
+        <button class="btn btn-secondary" type="submit" value="submit">Submit query</button>
+    </form>
+</body>
+{% elif  query == "C"%}
+<body>
+<h2>
+    C)Select patient information for a specific experiment
+</h2>
+<form method="POST" action="results">
+        <h3>Query Parameters:</h3>
+        <input style="display: none;" name="querytype" value="C"/>
+        <label for="ExpName"> Select Experiment Name:</label>
+        <input class="form-control-sm" type=”text” name="ExpName" id="ExpName" placeholder="ex:YYYYMMDD_ABC_LB" width="100%">
+        <button class="btn btn-secondary" type="submit" value="submit">Submit query</button>
+    </form>
+</body>
+
+{% elif  query == "D"%}
+<body>
+<h2>
+    D)Select patient information for a specific study
+</h2>
+<form method="POST" action="results">
+        <h3>Query Parameters:</h3>
+        <input style="display: none;" name="querytype" value="D"/>
+        <label for="study"> Select Study:</label>
+        <input class="form-control-sm" type=”text” name="study" id="study" placeholder="ex:ABC" width="50%">
+        <button class="btn btn-secondary" type="submit" value="submit">Submit query</button>
+    </form>
+
+</body>
+{% endif %}
+</html>
+
+{% endblock content %}

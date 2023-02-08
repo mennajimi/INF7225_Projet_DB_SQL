@@ -1,0 +1,38 @@
+<HEAD>
+    <title> BioTech Inc Database </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+</HEAD>
+<BODY>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Biotech Inc</a>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/">Upload</a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link" href="/query">Queries</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="container"  style="margin-top:40px">
+            <div class="row justify-content-md-center">
+                {% if erreur %}
+                <div class="col-md-5">
+                    <div class="alert alert-danger" role="alert">{{erreur}}</div>
+                </div>
+                {% endif %}
+                {% if success %}
+                <div class="col-md-5">
+                    <div class="alert alert-success" role="alert">{{success}}</div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+{% block content %} {% endblock %}

@@ -1,0 +1,93 @@
+{% extends "layout.html"%}
+{% block content %}
+<h1>Results</h1>
+{% if query == "A" %}
+    <h3> Parameters: <br> LIMS:{{ lims }} Panel: {{ panel }}</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Run Number</th>
+                <th scope="col">Temperature</th>
+                <th scope="col">Comments</th>
+                <th scope="col">Stability Status</th>
+                <th scope="col">Reception date</th>
+                <th scope="col">Processing Date</th>
+                <th scope="col">LIMS unique id</th>
+                <th scope="col">Pannel</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for row in data %}
+            <tr>
+                {% for col in row %}
+                    <td>{{col}}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% elif query == "B" %}
+<h3> Parameters: <br> SubjectID: {{ subjID }} Study: {{ study }}</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Experiment Name</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for row in data %}
+            <tr>
+                {% for col in row %}
+                    <td>{{col}}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% elif query == "C" %}
+<h3> Parameters: <br> Experiment name: {{ExpName}}</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">LIMS unique id</th>
+                <th scope="col">Subject ID</th>
+                <th scope="col">Visit ID</th>
+                <th scope="col">Timepoint</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for row in data %}
+            <tr>
+                {% for col in row %}
+                    <td>{{col}}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% elif query == "D" %}
+<h3> Parameters: <br> Study: {{ study }}</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">LIMS unique id</th>
+                <th scope="col">Subject ID</th>
+                <th scope="col">Visit ID</th>
+                <th scope="col">Timpoint</th>
+                <th scope="col">Experiment name</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for row in data %}
+            <tr>
+                {% for col in row %}
+                    <td>{{col}}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+</body>
+</html>
+{% endblock content %}
